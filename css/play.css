@@ -1,0 +1,71 @@
+.vcp-player {
+  position: static !important;
+}
+.vcp-controls-panel {
+  bottom: 1rem !important;
+  z-index: 1001 !important;
+  height: 1rem !important;
+}
+/* .player-btn {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/play.png);
+  background-size: 3rem;
+} */
+.btn-hide {
+  /* display: none; */
+  -webkit-animation: fadeOut ease 1s;
+  animation: fadeOut ease 1s;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+.isplay .vcp-poster {
+  display: none !important;
+}
+.vcp-controls-panel.hide {
+  -webkit-animation: fadeOut ease -1s !important;
+  animation: fadeOut ease -1s !important;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+.live-wrap .vcp-controls-panel{
+  display: none;
+}
+/* .vcp-controls-panel {
+  height: 2rem !important;
+} */
+.vcp-fullscreen-toggle, .vcp-panel-bg {
+  display: none;
+}
+.vcp-playtoggle {
+  font-size: 12px;
+  background-repeat:no-repeat!important; 
+}
+.vcp-timelabel {
+  font-size: 12px;
+  float: right !important;
+}
+.vcp-timeline {
+  width: 65% !important;
+  left: .8rem !important;
+  top: 0.17rem !important;
+}
+.vcp-player {
+  width: 100% !important;
+  height: 100% !important;
+}
+video {
+  width: 100% !important;
+  height: 100% !important;
+  /* object-fit: fill; */
+}
+.vcp-volume, .vcp-fullscreen-toggle, .vcp-bigplay {
+  display: none;
+}

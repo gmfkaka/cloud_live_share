@@ -1,0 +1,249 @@
+body,
+div,
+span,
+header,
+footer,
+nav,
+section,
+aside,
+article,
+ul,
+dl,
+dt,
+dd,
+li,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+i,
+b,
+textarea,
+button,
+input,
+select,
+figure,
+figcaption {
+  font-style: normal;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+[v-cloak] {
+  display: none;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 20px;
+  color: #333;
+  overflow: auto;
+}
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 0px;
+}
+:-webkit-scrollbar .horizontal {
+  height: 0px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: inherit;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: inherit;
+}
+/* end */
+/* input框placeholder */
+::-webkit-input-placeholder {
+  color: #acacac;
+}
+/* end */
+/*** 全局去除滚动条 ****/
+*::-webkit-scrollbar {
+  display: none !important;
+}
+button,
+input,
+textarea {
+  outline: none;
+}
+/* \ flex布局 */
+.flexBox {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+/* // 改变主轴方向 */
+.flexColumn {
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+/* // 两端对齐 */
+.flexBetween {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+/* // 垂直居中 */
+.flexAlign {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+/* // 左对齐 */
+.flexLeft {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: justify;
+  justify-content: flex-start;
+}
+.flexRight {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: justify;
+  justify-content: flex-end;
+}
+/* // 水平居中 */
+.flexCenter {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.flexMiddle {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.flexWrap {
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+body {
+  height: 100%;
+}
+body #app {
+  width: 100%;
+  height: 100%;
+}
+body ul li {
+  width: 50%;
+  padding-bottom: 0.1rem;
+  border-right: 1px solid #E9E9E9;
+}
+body ul li .imgBox {
+  background: #000;
+  width: 1.87rem;
+  height: 1rem;
+  position: relative;
+}
+body ul li .imgBox img {
+  max-width: 100%;
+  height: 100%;
+}
+body ul li .imgBox .liveStatus {
+  height: 0.17rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0.1rem;
+  position: absolute;
+  left: 0.05rem;
+  top: 0.05rem;
+  padding: 0.06rem;
+}
+body ul li .imgBox .liveStatus .circle {
+  display: inline-block;
+  width: 0.04rem;
+  height: 0.04rem;
+  background-color: #FE3883;
+  border-radius: 50%;
+  margin-left: 0.02rem;
+}
+body ul li .imgBox .liveStatus span {
+  font-size: 0.09rem;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: #ffffff;
+  margin-left: 0.02rem;
+}
+body ul li .imgBox .numBox {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+  width: 100%;
+  height: 0.34rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+body ul li .imgBox .numBox .hotBox {
+  position: absolute;
+  right: 0.09rem;
+  bottom: 0.03rem;
+}
+body ul li .imgBox .numBox .hotIcon {
+  display: inline-block;
+  width: 0.07rem;
+  height: 0.09rem;
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/hotIcon.png) no-repeat;
+  background-size: contain;
+}
+body ul li .imgBox .numBox span {
+  font-size: 0.09rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #ffffff;
+}
+body ul li .title {
+  width: 100%;
+  height: 0.42rem;
+  font-size: 0.14rem;
+  font-weight: 400;
+  color: #333333;
+  line-height: 0.21rem;
+  font-family: PingFangSC-Regular, PingFang SC;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  padding: 0.05rem 0.05rem 0.1rem 0.11rem;
+}
+body .noData {
+  height: 100%;
+  background: #161824;
+}
+body .noData img {
+  width: 1.02rem;
+  height: 1.18rem;
+}
+body .noData p {
+  color: #2B4555;
+  font-size: 0.15rem;
+}

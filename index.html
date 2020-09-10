@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="pragma" content="no-cache">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <title>云直播分享页</title>
+        <link rel="stylesheet" type="text/css" href="http://cloud-live-anchor.cloud.hoge.cn/css/reset.css">
+        <link rel="stylesheet" type="text/css" href="http://cloud-live-anchor.cloud.hoge.cn/css/swiper.min.css">
+        <link rel="stylesheet" type="text/css" href="http://cloud-live-anchor.cloud.hoge.cn/css/common.css">
+        <!-- 本地 -->
+        <!-- <link rel="stylesheet" type="text/css" href="./css//common.css"> -->
+        <link rel="stylesheet" type="text/css" href="http://cloud-live-anchor.cloud.hoge.cn/css/play.css">
+        <link rel="stylesheet" type="text/css" href="http://cloud-live-anchor.cloud.hoge.cn/css/animate.css">
+        <script src="http://cloud-live-anchor.cloud.hoge.cn/js/TcPlayer-2.2.2.js"></script>
+        <script src="http://cloud-live-anchor.cloud.hoge.cn/js/swiper.min.js"></script>
+    </head>
+    <style>
+        .vcp-poster {background: #000;}
+        .vcp-poster-pic.cover {/* height: 100%; *//* filter: blur(3px); */}
+        .info-wrap,.operate-wrap {z-index: 1002;}
+        .vcp-error-tips {display: none !important;}
+        .vcp-timeline .vcp-slider {height: 4px;}
+        .vcp-timeline .vcp-slider-thumb {top: -3px;}
+    </style>
+    <body>
+        <div id="main-wrap" class="main" v-show='flag' v-cloak>
+            <!-- 我的订单按钮 -->
+            <a v-if="activity.goods_order_link" class="myOrder" :href="activity.goods_order_link"></a>
+            <!-- 直播带货蒙层 -->
+            <div class="maskBox d-flex" style="flex-direction: column;z-index: 99999999;" v-if="goodsFlag">
+                <div style="flex:1;" @click="toggleGoodsMask"></div>
+                <div class="goodsWindow">
+                    <iframe class="iframe" :src="goodsLink" frameborder="0"></iframe>
+                </div>
+            </div>
+            <!--  直播结束蒙层 -->
+            <div class="maskBox" v-if='maskFlag'>
+                <div class="zhuanmaBox">
+                    <div class="zhuanma">
+                        <img src="http://cloud-live-anchor.cloud.hoge.cn/image/zhuanma.png" alt="">
+                    </div>
+                    <p>直播已结束，稍后奉上直播回看</p>
+                </div>
+            </div>
+            <!-- 直播结束蒙层2 -->
+            <div class="userMask animated" :class="showUserMask ? 'fadeInUp' : 'fadeOutDown'" v-if="showUserMask">
+                <div class="closeMask" @click="userMaskClose()"></div>
+                <div class="container d-flex flex-v-center">
+                    <h4>直播已结束</h4>
+                    <div class="userInfo">
+                        <div class="userImg">
+                            <img :src="activity.anchor_info&&activity.anchor_info.anchor_avatar ? activity.anchor_info.anchor_avatar.host+activity.anchor_info.anchor_avatar.dir+activity.anchor_info.anchor_avatar.filepath+activity.anchor_info.anchor_avatar.filename : 'http://cloud-live-anchor.cloud.hoge.cn/image/avatar.png'" alt="">
+                        </div>
+                        <div class="username">{{activity.anchor_info?activity.anchor_info.anchor_username:''}}</div>
+                        <div class="focusBox" v-if="!this.activity.is_care" @click="goApp()">
+                            <span>关注</span>
+                        </div>
+                        <div class="focusBox" v-else>
+                            <span class='focused'>已关注</span>
+                        </div>
+                    </div>
+                    <div class="staticData">
+                        <ul class="d-flex flex-between">
+                            <li>
+                                <span class="num">{{activity.watch_num | toThousands()}}</span>
+                                <span class="num-b">点击数</span>
+                            </li>
+                            <li>
+                                <span class="num">{{activity.share_num | toThousands()}}</span>
+                                <span class="num-b">分享数</span>
+                            </li>
+                            <li>
+                                <span class="num">{{activity.report_num | toThousands()}}</span>
+                                <span class="num-b">聊天数</span>
+                            </li>
+                            <li>
+                                <span class="num">{{activity.reward_num | toThousands()}}</span>
+                                <span class="num-b">打赏金额</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 播放按钮 -->
+            <div class="palyIcon" v-if='activity.time_status != 0 && playIcon' @click='videoPlay'>
+                <!-- <div class="palyIcon" v-if='playIcon' @click='videoPlay'> -->
+                <img src="http://cloud-live-anchor.cloud.hoge.cn/image/play1.png" alt="">
+            </div>
+            <!-- 更多直播 -->
+            <a class="moreLive" href="http://cloud-live-anchor.cloud.hoge.cn/list.html">
+                <i class="moreIcon"></i>
+                <span>更多直播</span>
+            </a>
+            <div id="video_container" class="player" @click="showPanelFlag = false"></div>
+            <!-- 顶部信息 -->
+            <div class="info-wrap flex-between" @click="showPanelFlag = false">
+                <div class="d-flex live-info flex-h-center">
+                    <div class="d-flex flex-v-center">
+                        <img
+                        :src="activity.anchor_info&&activity.anchor_info.anchor_avatar ? activity.anchor_info.anchor_avatar.host+activity.anchor_info.anchor_avatar.dir+activity.anchor_info.anchor_avatar.filepath+activity.anchor_info.anchor_avatar.filename : 'http://cloud-live-anchor.cloud.hoge.cn/image/avatar.png'"
+                        class="avatar">
+                        <div>
+                            <div class="username" style="margin-bottom:4px;">{{activity.anchor_info?activity.anchor_info.anchor_username:''}}</div>
+                            <div class="live-statue d-flex flex-v-center" v-if='activity.time_status == 0'>
+                                <i class="statue-icon" style="background:#f58935;"></i>
+                                <span class="status">准备中</span>
+                            </div>
+                            <div class="live-statue d-flex flex-v-center" v-if='activity.time_status == 1'>
+                                <i class="live-icon" style="background:#42a65a;"></i>
+                                <span class="status">直播中</span>
+                            </div>
+                            <div class="live-statue d-flex flex-v-center" v-if='activity.time_status == 2'>
+                                <i class="reply-icon" style="background:#8bb4e7;"></i>
+                                <span class="status">回看</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-v-center focus flex-h-center copy-button" v-if="!this.activity.is_care" @click="goApp">关注</div>
+                </div>
+                <div class="userImgList" v-if='activity.time_status == 1 && userImgList.length>0'>
+                    <ul class="">
+                        <li class="flex-h-center" v-for='(item,index) in userImgList' :key='index'
+                        :style="`margin-right: ${marginRight}rem`">
+                            <img v-if="item.avatar && item.avatar.host"
+                            :src="item.avatar.host+item.avatar.dir+item.avatar.filepath+item.avatar.filename" alt="">
+                            <img v-else-if='item.user_avatar' :src="item.user_avatar" alt="">
+                            <img v-else src="http://cloud-live-anchor.cloud.hoge.cn/image/avatar.png" alt="">
+                        </li>
+                    </ul>
+                </div>
+                <div class="watch-num" v-if='activity.time_status == 0'>
+                    <div class="number d-flex flex-v-center" style="margin-bottom:0.15rem;">
+                        <i class="watch-num-icon"></i>
+                        <span class="live-num">{{watchNum}}</span>
+                    </div>
+                    <div class="start-time">开始时间：{{activity.start_time | transformTime}}</div>
+                </div>
+                <div class="watch-num flex-v-center" v-else>
+                    <div class="number d-flex flex-v-center">
+                        <i class="watch-num-icon"></i>
+                        <span class="live-num">{{watchNum}}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 打赏列表 -->
+            <ul class="comment-list reward" id="comment" ref="container" style="bottom: 7rem">
+                <gifts-list  v-if='giftsInfo.length' v-for="(itemGift, indexGift) in giftsInfo" :key="indexGift" :gifts= 'itemGift' :index = 'indexGift'></gifts-list>
+            </ul>
+            <!-- 评论列表 -->
+            <ul class="comment-list" id="commentlist" ref="container" @click="showPanelFlag = false" style="overflow: scroll;height: 5rem;">
+                <li class="live-notice" v-if="liveNotice">最新公告：{{liveNotice}}</li>
+                <li class="list-item" v-for='(item,index) in commentList' :key="index">
+                    <div class="list-content" v-if='item.user_info'>
+                        <div v-if="(item.gift_info && item.gift_info.goods_id) || item.goods_id">
+                            <span class="name" style="color:rgb(243,154,44)">{{item.user_info.user_name}}</span>
+                            <span class="content" style="color:rgb(243,154,44)">送出了{{item.message}}</span>
+                        </div>
+                        <div v-else>
+                            <span class="name">{{item.user_info.user_name}}:</span>
+                            <span class="content">{{item.message}}</span>
+                        </div>
+                    </div>
+                    <div class="list-content" v-else>
+                        <div v-if="(item.gift_info && item.gift_info.goods_id) || item.goods_id">
+                            <span class="name" style="color:rgb(243,154,44)">{{item.username}}</span>
+                            <span class="content" style="color:rgb(243,154,44)">送出了{{item.content}}</span>
+                        </div>
+                        <div v-else>
+                            <span class="name">{{item.username}}:</span>
+                            <span class="content">{{item.content}}</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!-- 评论框 -->
+            <div class="chat-wrap d-flex flex-v-center" v-if='showPanelFlag'>
+                <input type="text" id="send-text" class="send-input" placeholder="说些什么..." v-model='comment' autofocus
+                @blur="blur()">
+                <span class="send-btn btn" @click="sendMessage()" :class='this.comment?"success":""'>发送</span>
+                <!-- <span class="send-btn" @click='hidePanel()'>取消</span> -->
+            </div>
+            <!-- 底部图标 -->
+            <div class="operate-wrap  flex-between">
+                <div class="d-flex flex-v-center">
+                    <!-- <img v-if="goodsLink" class="shopIcon" src="http://cloud-live-anchor.cloud.hoge.cn/image/shop.png" @click="toggleGoodsMask" alt=""> -->
+                    <img class="shopIcon" src="http://cloud-live-anchor.cloud.hoge.cn/image/shop.png" @click="toggleGoodsMask" alt="">
+                    <i class="commentIcon" @click="showPanel()" v-if="activity.allow_comment == '1'">&nbsp;&nbsp;&nbsp;说些什么...</i>
+                    <i class="hide-icon" @click="updatePanel()"></i>
+                </div>
+                <!-- <i class="share-icon"></i> -->
+                <div class="loveBox">
+                    <i class="gifts-icon" @click='showGifts = true'></i>
+                    <i class="love-icon" @click="giveLove($event)"></i>
+                    <span class="love-num" v-if='loveNum'>{{loveNum}}</span>
+                </div>
+            </div>
+            <div class="commentSuccess" v-if='live_open'>
+                <div class="mask">
+                    <p>直播开始，请刷新</p>
+                    <div class="iKnow" @click='refresh()'>我知道了</div>
+                </div>
+            </div>
+            <div class="commentSuccess" v-if='commentFlag'>
+                <div class="mask">
+                    <p>评论成功，审核中</p>
+                    <div class="iKnow" @click='commentFlag=false'>我知道了</div>
+                </div>
+            </div>
+            <div class="commentSuccess noticeBox" v-if='liveNoticeFlag'>
+                <div class="mask">
+                    <p class='liveNotice'>{{liveNotice}}</p>
+                    <div class="iKnow" @click='liveNoticeFlag=false'>关闭</div>
+                </div>
+            </div>
+            <div class="commentSuccess appBox" :class="activity.site_id == 18 ? 'haibo' : ''" v-if="appStoreNotice">
+                <div class="mask">
+                    <p class="app-text">进入{{activity.client_info.client_name}} APP，参与更多互动！</p>
+                    <img class="close" src="http://cloud-live-anchor.cloud.hoge.cn/image/close.png" @click='appStoreNotice=false'>
+                    <div class="iKnow" @click='jumpToAppStore'>确定</div>
+                </div>
+            </div>
+            <!-- 礼物列表 -->
+            <div class="giftsList" v-show='showGifts'>
+                <div class="close" @click='showGifts = false'>
+                    <div class="closeIcon"></div>
+                </div>
+                <!-- <div class="swiper-container" ref="swiperContainer" style="padding-top: 0.3rem;">
+                <div class="swiper-wrapper"> -->
+                <ul class="d-flex">
+                    <li
+                      :class="{'flex-v-center': 1, 'free': item.value == 0}"
+                      class="rewardItem"
+                      v-for="(item, index) in giftsList[currentPage-1]"
+                      :key="index"
+                      @click="reward(item)"
+                    >
+                        <div class="iconBox">
+                            <!-- <img
+                              :src="item.img.host + item.img.dir + item.img.filepath + item.img.filename"
+                              alt=""
+                            > -->
+                            <img :src="item.imgUrl" alt="">
+                        </div>
+                        <div class="giftsName">{{item.name}}</div>
+                        <div class="money">{{item.value}}金币</div>
+                        <div class="sendbox">赠送</div>
+                        <div class="freeIcon"></div>
+                    </li>
+                </ul>
+                <div class="d-flex pageBox flex-between">
+                    <img class="pageIcon" src="http://cloud-live-anchor.cloud.hoge.cn/image/prev.png" @click="goPrev" alt="">
+                    <img class="pageIcon" src="http://cloud-live-anchor.cloud.hoge.cn/image/next.png" @click="goNext" alt="">
+                </div>
+                <!-- </div> -->
+                <!-- 如果需要分页器 -->
+                <!-- <div class="swiper-pagination" ref="swiperPagination"></div> -->
+                <!-- </div> -->
+                <!-- <div class="bottom flex-between flex-v-center">
+                <div class="leftMoney">
+                <i class="moneyIcon"></i>
+                <span>金币金额： {{rewardNum}}</span>
+                </div>
+                <div class="rightBtn" @click="goApp()">去充值</div>
+                </div> -->
+            </div>
+            <input id="wx-share-title" type="hidden" v-model="activity.title" value="" />
+            <input id="wx-share-desc" type="hidden" v-model="activity.brief" value="" />
+            <input id="wx-share-cfss" type="hidden" v-model="activity.title" value="" />
+            <input id="wx-share-img" type="hidden" v-model="activity.share_src" value="" />
+            <input id="wx-share-link" type="hidden" v-model="activity.share_url" value="" />
+            <input id="wx-share-type" type="hidden" value="" />
+            <input id="wx-share-dataUrl" type="hidden" value="" />
+        </div>
+        <script type="text/javascript">
+            (function () {
+                document.documentElement.style.fontSize = document.documentElement.clientWidth / 750*100 + 'px';
+            })();
+        </script>
+        <!-- 本地 -->
+        <script src="http://cloud-live-anchor.cloud.hoge.cn/js/vue.js"></script>
+        <script type="text/javascript" src="http://cloud-live-anchor.cloud.hoge.cn/giftsList.js"></script>
+        <script src="http://cloud-live-anchor.cloud.hoge.cn/js/vconsole.min.js"></script>
+        <script src="http://cloud-live-anchor.cloud.hoge.cn/js/ua.js"></script>
+        <script src="http://cloud-live-anchor.cloud.hoge.cn/js/util.js"></script>
+        <!-- 本地util -->
+        <!-- <script src="./js/util.js"></script> -->
+        <script src="http://cloud-live-anchor.cloud.hoge.cn/js/env.js"></script>
+        <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script id="wxjs"></script>
+        <script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.min.js"></script>
+        <script src="http://cloud-live-anchor.cloud.hoge.cn/js/index2.js"></script>
+        <!-- 本地index2 -->
+        <!-- <script src="./js/index2.js"></script> -->
+        <script>
+            var _hmt = _hmt || [];
+            (function () {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?4aea803a9a20f6d5f555a190163ff66b";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm,s);
+            })();
+        </script>
+    </body>
+</html>

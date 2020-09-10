@@ -1,0 +1,1028 @@
+body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4,h5, h6, i, b, textarea, button, input, select, figure, figcaption {
+  font-style: normal;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+[v-cloak]{
+  display: none;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(170,170,170,1);
+  font-size: 20px;
+  color: #333;
+  overflow: hidden;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 0px;
+}
+:-webkit-scrollbar .horizontal {
+  height: 0px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: inherit;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: inherit;
+}
+/* end */
+
+/* input框placeholder */
+::-webkit-input-placeholder {
+  color: #acacac;
+}
+/* end */
+
+.d-flex {
+  display: flex !important;
+}
+.vertical-middle {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-h-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-v-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+ /* 左对齐 */
+ .flexLeft {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: justify;
+  justify-content: flex-start;
+}
+.flexRight {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: justify;
+  justify-content: flex-end;
+}
+/* // 两端对齐 */
+.flexBetween {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.maskBox{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background:rgba(0,0,0,0.5);
+  z-index:9999;
+}
+.zhuanmaBox{
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.zhuanma{
+  text-align: center;
+  /* width: 3.92rem; */
+  height: 1.68rem;
+}
+.zhuanma img{
+  max-width: 100%;
+  height: 100%;
+}
+.zhuanmaBox p{
+  margin-top: 0.16rem;
+  font-size:0.4rem;
+  font-family:SourceHanSansCN-Normal;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:1.44rem;
+}
+.main {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.is-pc {
+  width: 375px;
+  height: 667px;
+  margin: 100px auto;
+}
+
+/* 头部信息栏 */
+.info-wrap {
+  position: absolute;
+  top: 0.3rem;
+  height: 0.66rem;
+  width: 100%;
+  color: #fff;
+  font-size: 0.18rem;
+  padding: 0 0.24rem;
+  box-sizing: border-box;
+}
+/* 更多直播 */
+.moreLive{
+  width: 1.34rem;
+  height:0.44rem;
+  background:rgba(0,0,0,0.2);
+  border-radius:0.8rem 0 0 0.8rem;
+  position: fixed;
+  right: .2rem;
+  top: 1.36rem;
+  z-index: 1001;
+  color: #fff;
+  font-size: 0.18rem;
+  padding-left: 0.17rem;
+  display: flex;
+  align-items: center;
+}
+.moreIcon{
+  display: inline-block;
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/moreIcon.png) center center no-repeat;
+  width: 0.11rem;
+  height: 0.19rem;
+  overflow: hidden;
+  background-size: contain;
+  margin-right: 0.1rem;
+}
+.live-info {
+  /* max-width: 7rem; */
+  padding: 0 0.1rem 0 0;
+  width:2.6rem;
+  box-sizing: border-box;
+  background: rgba(0,0,0,0.4);
+  border-radius: 1.3rem;
+  align-items: center;
+}
+/* 关注 */
+.focus{
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/focus.png) center center no-repeat;
+  width: 0.64rem;
+  height: 0.46rem;
+  overflow: hidden;
+  background-size: contain;
+  font-size:0.2rem;
+font-family:PingFangSC-Medium,PingFang SC;
+font-weight:500;
+color:rgba(255,255,255,1);
+  /* margin: 0.2rem 0 0 0.5rem; */
+}
+.userImgList{
+  position: absolute;
+  left: 3rem;
+  overflow: hidden;
+}
+.userImgList ul{
+  width: 2.6rem;
+  display: flex;
+  justify-content:flex-end;
+}
+.userImgList li{
+  width: 0.66rem;
+  height: 0.66rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 0.15rem;
+}
+.userImgList li:last-child{
+  margin-right: 0 !important;
+}
+.userImgList li img{
+  width: 100%; 
+  height: 100%;
+}
+
+.info-wrap .avatar {
+  height: 0.66rem;
+  width: 0.66rem;
+  border-radius: 50%;
+  margin-right: 0.1rem;
+}
+
+.info-wrap .username{
+  width: 1.1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size:0.22rem;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:0.3rem;
+}
+.info-wrap .status{
+  font-size: 0.18rem;
+}
+
+.statue-icon, .notice-icon, .reply-icon, .live-icon {
+  display: inline-block;
+  width: 0.08rem;
+  height: 0.08rem;
+  border-radius: 50%;
+  margin-right: 0.05rem;
+}
+.palyIcon{
+  width: 1.22rem;
+  height: 1.22rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 9999;
+}
+.palyIcon img{
+  max-width: 100%;
+  height: 100%;;
+}
+.notice-icon {
+  background: #f1453d;
+}
+.reply-icon {
+  background: #fff;
+}
+.live-icon {
+  background: #3598dc;
+}
+
+.watch-num {
+  /* position: absolute;
+  right: 0.5rem; */
+  padding: 0.2rem 0.25rem;
+  box-sizing: border-box;
+  background: rgba(0,0,0,0.2);
+  border-radius: 1.3rem;
+  /* min-height: 1.65rem; */
+  /* line-height: 1.65rem; */
+  font-size: 0.18rem;
+}
+
+.num-wrap {
+  height: 1.75rem;
+}
+
+.watch-num-icon {
+  display: inline-block;
+  width: 0.18rem;
+  height: 0.23rem;
+  background: url('http://cloud-live-anchor.cloud.hoge.cn/image/group_icon1@2x.png') no-repeat;
+  /* background: url('/image/group_icon1@2x.png') no-repeat; */
+  background-size: contain;
+  margin-right: 0.1rem;
+}
+/* end */
+
+/* 播放器 */
+.player {
+  width: 100%;
+  height: 100%;
+}
+
+.pc-player {
+  width: 375px;
+  height: 667px;
+}
+/* end */
+
+/* 消息 */
+.comment-list {
+  position: absolute;
+  z-index: 1002;
+  bottom: 2rem;
+  max-width:4rem;
+  margin-left: 0.24rem;
+}
+
+.comment-list::-webkit-scrollbar{
+  display:none;
+}
+.giftsBox{
+  background:rgba(0,0,0,0.2);
+  /* border-radius: 0.5rem;
+  padding: 0.05rem;
+  box-sizing: border-box;
+  word-break: break-all;
+  margin-bottom: 0.3rem;
+  display: inline-block; */
+
+  width:3.48rem;
+  height:1.04rem;
+  background:rgba(0,0,0,0.2);
+  border-radius:0rem 0.2rem 0.2rem 0.2rem;
+  position: relative;
+  margin-left: 0.3rem;
+  padding-left: 0.3rem;
+  margin-bottom: 0.15rem;
+}
+.reward{
+  /* height: 2.8rem; */
+}
+.giftsBox.active{
+  left: 0;
+}
+.giftsBox.unactive{
+  left: -100%;
+}
+.giftsUserName{
+  width: 1.88rem;
+  color:#fff;
+  font-size: 0.24rem;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:500;
+  margin: 0.1rem;
+  font-size:0.24rem;
+}
+.giftsUserName div{
+  margin: 0 0 0.2rem 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+}
+.giftsUserName span{
+  font-size: 0.28rem;
+  font-weight:400;
+}
+.giftsUserImg{
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: -0.3rem;
+  z-index: 999;
+}
+.giftsUserImg img{
+  max-width: 100%;
+  height: 100%;
+}
+.giftsImg {
+  width: 0.95rem;
+  height: 0.95rem;
+  overflow: hidden;
+}
+.giftsImg img{
+  max-width: 100%;
+  height: 100%;
+}
+.live-notice {
+  color: #ffa500;
+}
+
+.live-notice {
+  background:rgba(0,0,0,0.2);
+  border-radius: 0.28rem;
+  padding: 0.02rem 0.1rem;
+  box-sizing: border-box;
+  word-break: break-all;
+  margin-bottom: 0.15rem;
+  display: inline-block;
+  font-size:0.24rem;
+  line-height: 0.4rem;
+ 
+}
+.list-item .name {
+  color: #ffda81;
+}
+.list-item .content {
+  color: #fff;
+}
+.list-item{
+  margin-bottom: 0.05rem;
+}
+.list-item .list-content{
+  background:rgba(0,0,0,0.2);
+  border-radius: 0.28rem;
+  padding: 0.02rem 0.1rem;
+  box-sizing: border-box;
+  word-break: break-all;
+  display: inline-block;
+  font-size:0.24rem;
+  line-height:0.4rem;
+}
+.list-item:last-child  .list-content{
+  margin-bottom: 0;
+} 
+/* end */
+
+/* 评论框 */
+.chat-wrap {
+  position: absolute;
+  bottom: 0rem;
+  width: 100%;
+  padding: 0 0.3rem;
+  box-sizing: border-box;
+  z-index: 999999;
+  background: #f9fafc;
+  height: 1rem;
+}
+
+.send-input {
+  border: none;
+  outline: none;
+  height: 1rem;
+  border-radius: 4px;
+  background: #f9fafc;
+  line-height: normal;
+  font-size: 0.28rem;
+  flex: 1;
+}
+
+.btn {
+  display: inline;
+  font-size: 0.28rem;
+  color: #fff;
+  border-radius: 4px;
+  margin-left: 0.4rem;
+  background: #acacac;
+  box-sizing: border-box;
+  width: 1rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  text-align: center;
+}
+.success {
+  background: #42a65a;
+}
+/* end */
+.operate-wrap {
+  position: absolute;
+  bottom: 0.3rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 0.24rem;
+}
+.operate-wrap .send-icon, .operate-wrap .hide-icon, .operate-wrap .share-icon, .operate-wrap .love-icon{
+  display: inline-block;
+  width: 0.68rem;
+  height: 0.68rem;
+  cursor: pointer;
+}
+.operate-wrap .commentIcon {
+  /* display: inline-block;
+  width: 4.2rem;
+  height: 1.6rem;
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/comment.png) no-repeat center;
+  background-size: contain;
+  margin-right: 0.5rem;
+  font-size:  0.6rem;
+  font-family:SourceHanSansCN-Regular,SourceHanSansCN;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:1.6rem; */
+  width:2.2rem;
+height:0.68rem;
+line-height: 0.68rem;
+background:rgba(0,0,0,0.2);
+border-radius:0.34rem;
+font-size:0.24rem;
+font-family:SourceHanSansCN-Regular,SourceHanSansCN;
+font-weight:400;
+color:rgba(255,255,255,0.6);
+margin-right: 0.3rem;
+}
+.operate-wrap .send-icon {
+  background: url('http://cloud-live-anchor.cloud.hoge.cn/image/fayan@2x.png') no-repeat center;
+  background-size: 1.7rem;
+  margin-right: 0.5rem;
+}
+.operate-wrap .hide-icon {
+  background: url('http://cloud-live-anchor.cloud.hoge.cn/image/shuaxin1.png') no-repeat center;
+  /* background: url('/image/shuaxin1.png') no-repeat center; */
+  background-size: 100%;
+}
+.operate-wrap .share-icon{
+  float: right;
+  background: url('http://cloud-live-anchor.cloud.hoge.cn/image/share.png') no-repeat center;
+  background-size: 100%;
+} 
+.operate-wrap .love-icon{
+  float: right;
+  background: url('http://cloud-live-anchor.cloud.hoge.cn/image/love.png') no-repeat center;
+  background-size: 100%;
+  margin-right: 0.16rem;
+  background-size:100% 100%; 
+}
+.operate-wrap .gifts-icon{
+  display: inline-block;
+  width: 0.65rem;
+  height: 0.67rem;
+  background: url('http://cloud-live-anchor.cloud.hoge.cn/image/gifts1.png') no-repeat center;
+  /* background: url('/image/gifts1.png') no-repeat center; */
+  background-size: 100%;
+  margin-right: 0.3rem;
+}
+.loveBox{
+  position: relative;
+  display: flex;
+}
+.love-num{
+  min-width: 0.5rem;
+  background-color: rgba(255,69,69,1);
+  font-size: 0.18rem;
+  border-radius: 0.14rem;
+  position: absolute;
+  right: -0.1rem;
+  top: -0.15rem;
+  padding: 0.05rem 0.1rem;
+  font-weight: 500;
+  color: rgba(255,255,255,1);
+  line-height: 0.25rem;
+  text-align: center;
+}
+.hide-panel {
+  display: none !important;
+  transition: all .3s;
+}
+
+.show {
+  display: block !important;
+  transition: all .3s;
+}
+.commentSuccess{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background:rgba(0,0,0,0.5);
+  z-index: 9999;
+  top: 0;
+  left: 0;
+}
+.commentSuccess .mask{
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/commentOk.png) center center no-repeat;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 5.47rem;
+  height: 4.61rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.commentSuccess.noticeBox .mask{
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/notice.png) center center no-repeat;
+  width: 5.47rem;
+  height: 4.61rem;
+  background-size: contain;
+}
+.commentSuccess.noticeBox .iKnow{
+  margin-top: 0.3rem!important;
+}
+.commentSuccess.appBox{
+  z-index: 99999999999;
+}
+.commentSuccess.appBox .mask{
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/appbg_default.png) center center no-repeat;
+  width: 5.47rem;
+  height: 4.61rem;
+  background-size: contain;
+}
+.commentSuccess.appBox.haibo .mask{
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/appbg.png) center center no-repeat;
+  width: 5.47rem;
+  height: 4.61rem;
+  background-size: contain;
+}
+.commentSuccess.appBox p.app-text{
+  margin-top:2.5rem;
+  font-size:0.28rem;
+  color:#666;
+}
+.commentSuccess .close{
+  position: absolute;
+  width: 0.3rem;
+  height: 0.3rem;
+  top:25%;
+  right: 10%;
+}
+.commentSuccess .mask p{
+  font-size:0.28rem;
+  font-family:SourceHanSansCN-Regular;
+  font-weight:400;
+  color:rgba(51,51,51,1);
+  margin-top: 2.2rem;
+  text-align: center;
+}
+.liveNotice{
+  width: 100%;
+  padding: 0 0.5rem;
+  word-break: break-all;
+  height: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.3;
+}
+.commentSuccess .mask .iKnow{
+  width: 3.2rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  background-color: #3598dc;
+  border-radius: 1.3rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size:0.3rem;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+
+
+#love {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  z-index: 99999;
+}
+
+#first {
+  width: 15px;
+  height: 26px;
+  background-color: red;
+  position: absolute;
+  right: 3.2px;
+  bottom: 0;
+  transform: rotate(45deg);
+  border-radius: 10px 10px 1px 1px;
+  opacity: 1;
+  z-index: 99999;
+}
+
+#second {
+  width: 15px;
+  height: 26px;
+  background-color: red;
+  position: absolute;
+  left: 3.2px;
+  bottom: 0;
+  transform: rotate(-45deg);
+  border-radius: 10px 10px 1px 1px;
+  opacity: 1;
+  z-index: 99999;
+}
+.love{
+  animation:mymove 3.5s 1;
+  -webkit-animation:mymove 3.5s 1; /* Safari 和 Chrome */
+}
+@-webkit-keyframes mymove {
+  from {
+    transform: translateY(0px);
+    opacity: 1;
+  } 
+  to { 
+    transform: translateY(-800px);
+    /* top: -800px; */
+    opacity: 0;
+    display: none;
+  };
+}
+
+@keyframes mymove {
+  from {
+    transform: translateY(0px);
+    opacity: 1;
+  } 
+  to { 
+    transform: translateY(-800px);
+    /* top: -800px; */
+    opacity: 0;
+    display: none;
+  };
+}
+/* 评论结束蒙层 */
+.userMask{
+  background:rgba(0,0,0,0.8);
+  opacity:0.7;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 99999;
+  margin: 0 auto;
+}
+.closeMask{
+  width: 0.33rem;
+  height: 0.33rem;
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/close2.png) no-repeat center;
+  background-size: contain;
+  position: absolute;
+  right: 0.24rem;
+  top: 0.64rem;
+}
+.container{
+  width: 100%;
+  margin: 0 auto;
+  flex-direction: column;
+}
+.userMask h4{
+  width: 100%;
+  text-align: center;
+  font-size:0.4rem;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:0.56rem;
+  padding-top: 1.47rem;
+}
+.userInfo{
+  margin-top: 1.1rem;
+  text-align: center;
+}
+.userInfo .userImg{
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: #000;
+  margin : 0 auto;
+}
+.userInfo .userImg img{
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+}
+.userInfo .username{
+  margin-top: 0.15rem;
+  font-size:0.3rem;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.userInfo .focusBox{
+  margin-top: 0.5rem;
+  padding: 0 1rem;
+}
+.userInfo .focusBox span{
+  display: inline-block;
+  width: 1.4rem;
+  height: 0.5rem;
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/focus2.png) no-repeat center center;
+  background-size: contain;
+  font-size: 0.24rem;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height: 0.5rem;
+  text-align: center;
+}
+.focusBox span.focused{
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/focused.png) no-repeat center center;
+  background-size: contain;
+}
+.staticData{
+  width: 6rem;
+  margin-top: 1.1rem;
+}
+.staticData ul{
+  flex-wrap: wrap;
+}
+.staticData li{
+  width: 50%;
+  text-align: center;
+  font-size: 0.8rem;
+  font-family: ArialMT;
+  color:rgba(255,255,255,1);
+  margin-bottom: 0.4rem;
+}
+.staticData li .num{
+  font-size:0.4rem;
+  font-family:ArialMT;
+  color:rgba(255,255,255,1);
+  margin-top: 0.5rem;
+}
+.staticData li .num-b{
+  display: block;
+  font-size:0.24rem;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(204,204,204,1);
+  margin-top: 0.14rem;
+}
+/* 礼物列表 */
+.giftsList{
+  width:100%;
+  height:5.92rem;
+  position: fixed;
+  bottom: 0;
+  z-index: 10005;
+  padding: 0.25rem 0.2rem 0.34rem 0.2rem;
+  font-size: 0.36rem;
+  background:rgba(22,24,36,1);
+  box-shadow:0rem 0.02rem 0.24rem 0rem rgba(0,0,0,0.1);
+  border-radius:0.16rem 0.16rem 0rem 0rem;
+}
+.swiper-container{
+  width: 100%;
+  height: 85%;
+}
+.swiper-pagination-bullet{
+  background:rgba(51,51,51,1);
+  width: 0.2rem;
+  height: 0.2rem;
+  border-radius: 50%;
+  opacity: 1
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active{
+  width: 1.6rem;
+  border-radius: 4px;
+}
+.giftsList .close{
+  height: 0.48rem;
+  color: #FF444444;
+  text-align: right;
+}
+.closeIcon {
+  display: inline-block;
+  width: 0.24rem;
+  height: 0.24rem;
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/closeIcon.png) no-repeat center center;
+  background-size: contain;
+}
+.giftsList ul{
+  padding: 0 0.15rem;
+  flex-wrap: wrap;
+  height: 77%;
+}
+.giftsList ul li{
+  width: 1.6rem;
+  flex-direction: column;
+  height: 1.82rem;
+  margin-bottom: 0.4rem;
+  position: relative;
+}
+.giftsList ul li:not(:nth-of-type(4n)){
+  margin-right: 0.1rem;
+}
+.giftsList ul li .iconBox{
+  width: 0.72rem;
+  height: 0.72rem;
+  background-size: contain;
+}
+.giftsList ul li.free{
+  position: relative;
+  width: 1.6rem;
+  height: 1.82rem;
+  background:rgba(42,45,64,1);
+  border-radius: 0.08rem;
+  padding-top: 0.24rem;
+}
+.giftsList ul li .sendbox{
+  display: none;
+}
+.giftsList ul li .freeIcon{
+  display: none;
+}
+.giftsList ul li.free .giftsName{
+  display: none;
+}
+.giftsList ul li.free .sendbox{
+  display: block;
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/send.png) no-repeat center center;
+  width: 100%;
+  height: 0.52rem;
+  text-align: center;
+  /* margin-top: 0.9rem;; */
+  font-size:0.22rem;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:0.52rem;
+  border-bottom-left-radius:0.08rem;
+  border-bottom-right-radius:0.08rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.giftsList ul li.free .freeIcon{
+  display: block;
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/freeIcon.png) no-repeat center center;
+  background-size: contain;
+  width: 0.53rem;
+  height: 0.27rem;
+  position: absolute;
+  right: 0rem;
+  top: -0.1rem;
+}
+.giftsList ul li .iconBox img{
+  max-width: 100%;
+  height: 100%;
+}
+
+.giftsName{
+  font-size: 0.48rem;
+  color: #fff;
+  padding: 0.4rem 0;
+
+  width:0.72rem;
+  height:0.33rem;
+  font-size:0.24rem;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:0.33rem;
+  text-align: center;
+}
+.money{
+  font-size:0.18rem;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(179,179,179,1);
+  line-height:0.25rem;
+}
+.bottom .leftMoney {
+  color:rgba(153,153,153,1);
+  font-size: 0.48rem;
+}
+.bottom .leftMoney .moneyIcon{
+  width: 0.8rem;
+  height: 0.36rem;
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/moneyIcon.png) no-repeat center center;
+  background-size: contain;
+  display: inline-block;
+}
+.bottom .rightBtn{
+  width: 2.6rem;
+  height: 1.2rem;
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/http://cloud-live-anchor.cloud.hoge.cn/image/chongzhi.png) no-repeat center center;
+  background-size: contain;
+  display: inline-block;
+  color:rgba(37,168,255,1);
+  font-size: 0.48rem;
+  text-align: center;
+  line-height: 1.2rem;
+}
+#yourElement{
+  animate-duration: 2s;
+  animate-delay: 1s;
+}
+.pageBox{
+  /* padding: 0 4.6rem; */
+  height: 1rem;
+  justify-content: center;
+}
+.pageIcon{
+  width: 0.88rem;
+  height: 0.88rem;
+}
+.shopIcon{
+  width: 0.69rem;
+  height: 0.64rem;
+  margin-right: 0.27rem;
+}
+.goodsWindow{
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10rem;
+  border-radius:0.3rem 0.3rem 0 0;
+}
+.iframe{
+  width: 100%;
+  height: 100%;
+  padding-top: 2%;
+}
+.myOrder{
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  bottom: 3rem;
+  right: 0;
+  background: url(http://cloud-live-anchor.cloud.hoge.cn/image/order.png) no-repeat center center;
+  background-size: contain;
+  z-index: 999999;
+}

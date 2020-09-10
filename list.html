@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <title>更多直播</title>
+  <script src="http://cloud-live-anchor.cloud.hoge.cn/js/change_resize.js"></script>
+  <link rel="stylesheet" href="http://cloud-live-anchor.cloud.hoge.cn/css/reset.css">
+  <link rel="stylesheet" href="http://cloud-live-anchor.cloud.hoge.cn/css/list.css">
+</head>
+
+<body>
+  <div id="app" v-if="requested">
+      <ul class="flexBox flexLeft flexWrap" v-if="liveList.length">
+          <li v-for="(item,index) in liveList" :key="index" @click='goDetail(item.id)'>
+            <div class="imgBox flexBox flexMiddle">
+              <img :src="item.indexPic" alt="">
+              <div class="liveStatus flexBox flexLeft flexMiddle">
+                <i class="circle"></i>
+                <span>{{item.time_status_text}}</span>
+              </div>
+              <div class="numBox flexBox flexLeft">
+                <div class="hotBox">
+                    <i class="hotIcon"></i>
+                    <span>{{item.watch_num}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="title">
+              {{item.title}}
+            </div>
+          </li>
+      </ul>
+      <div class="noData flexBox flexCenter flexAlign flexColumn" v-else>
+        <img src="http://cloud-live-anchor.cloud.hoge.cn/image/nodata.png" alt="">
+        <p>暂无直播，敬请期待</p>
+      </div>
+  </div>
+</body>
+<script src="http://cloud-live-anchor.cloud.hoge.cn/js/vue.js"></script>
+<script src="http://cloud-live-anchor.cloud.hoge.cn/js/vconsole.min.js"></script>
+<script src="http://cloud-live-anchor.cloud.hoge.cn/js/ua.js"></script>
+<script src="http://cloud-live-anchor.cloud.hoge.cn/js/util.js"></script>
+<script src="http://cloud-live-anchor.cloud.hoge.cn/js/env.js"></script>
+<script src="http://cloud-live-anchor.cloud.hoge.cn/js/list.js"></script>
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4aea803a9a20f6d5f555a190163ff66b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm,s);
+  })();
+</script>
+</html>
